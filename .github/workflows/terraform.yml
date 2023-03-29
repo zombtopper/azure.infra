@@ -36,8 +36,8 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: 
-          cd infrastructure \
+        run: |
+          cd infrastructure
           terraform init
 
       
