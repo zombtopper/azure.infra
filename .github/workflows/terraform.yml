@@ -37,7 +37,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: 
-          cd infrastructure
+          cd infrastructure \
           terraform init
 
       
@@ -48,8 +48,6 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color -input=false
-        env:
-          TF_ACTION_WORKING_DIR: 'infrastructure'
 
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve -input=false
