@@ -43,8 +43,6 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-        with:
-          TF_ACTION_WORKING_DIR: 'infrastructure'
 
       - name: Terraform Plan
         id: plan
