@@ -36,9 +36,10 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
-        env:
-          TF_ACTION_WORKING_DIR: 'infrastructure'
+        run: 
+          cd infrastructure
+          terraform init
+
       
       - name: Terraform Validate
         id: validate
