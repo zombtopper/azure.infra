@@ -61,5 +61,11 @@ jobs:
           cd infrastructure
           terraform plan -no-color -input=false
 
-      # - name: Terraform Apply
-      #   run: terraform apply -auto-approve -input=false
+      - name: Terraform Apply
+        run: |
+          export ARM_CLIENT_ID="${{ secrets.AZURE_CLIENT_ID }}"
+          export ARM_CLIENT_SECRET="${{ secrets.AZURE_CLIENT_SECRET }}"
+          export ARM_TENANT_ID="${{ secrets.AZURE_TENANT_ID }}"
+          export ARM_SUBSCRIPTION_ID="${{ secrets.AZURE_SUB_ID }}"
+          cd infrastructure
+          terraform apply -auto-approve -input=false

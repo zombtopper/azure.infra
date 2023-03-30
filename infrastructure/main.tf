@@ -20,8 +20,33 @@ provider "azurerm" {
   features {}
 }
 
+
+#---- Core Resources ----#
+
 # Create a resource group
 resource "azurerm_resource_group" "core" {
   name     = "kubernetes"
   location = "centralus"
+}
+
+
+#---- AKS ----#
+
+resource "azurerm_kubernetes_cluster" "example" {
+  name                = "evergreen"
+  location            = "centralus"
+  resource_group_name = azurerm_resource_group.core.name
+  dns_prefix          = "nile"
+  sku_tier            = "Free"
+
+  default_node_pool {
+    name       = "default"
+    node_count = 1
+    vm_size    = "Standard_D2_v2"
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+
 }
